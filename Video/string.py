@@ -18,7 +18,7 @@ print(myStr.lower())
 print(myStr.swapcase())
 
 #Convertir solo la primera letra en mayuscula
-print(myStr.capitalize())
+print(myStr.capitalize()())
 
 #Remplazar el primer texto por el segundo y poner todo en mayusculas
 print(myStr.replace('Hello', 'Bye').upper())
