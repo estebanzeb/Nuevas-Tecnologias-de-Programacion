@@ -64,7 +64,7 @@ print((10, "Hello" ,30, "spirit", 50))
 
 
 
-#Dictionary
+#Dictionary o JSO
 #Primero va el "KEY" y despues el "VALUE"
 {
     "name": "Ryan",

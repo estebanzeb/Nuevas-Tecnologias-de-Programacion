@@ -25,7 +25,7 @@ agesum = int(age) + 10
 print(agesum)
 
 #Cambiar o convierte un tipo de dato
-age = "22"
+
 print(type(age))
 print(age)
 print(type(int(age)))
