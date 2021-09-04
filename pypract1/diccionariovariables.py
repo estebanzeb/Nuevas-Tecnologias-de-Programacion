@@ -1,11 +1,17 @@
+z = "ryan"
+x = "ray"
+y = "Estados Unidos"    
+
+
+
 person = {
-    "firts_name": "ryan",
-    "last_name": "ray",
+    "firts_name": z,
+    "last_name": x,
     "age": "22",
-    "country": "Estados Unidos",
+    "country": y,
     "town": "Chikago"
 }
 
-print (person.keys(),"\n")
+print (person,"\n")
 #print(person.items(),"\n")
 #print (person.values(),"\n")
