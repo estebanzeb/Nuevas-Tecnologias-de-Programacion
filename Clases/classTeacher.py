@@ -1,4 +1,4 @@
-from Employee import Employee
+from classEmployee import Employee
 
 class teacher(Employee):
     __numberhour = 0
