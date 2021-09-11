@@ -1,0 +1,63 @@
+{% extends 'maestra.html' %}
+
+{% block titulo %}Mi primer pagian con Flask {%endblock%}
+
+{%block contenido%}
+
+
+        <h1>{{data.titulo}} {{data.usuario}}</h1>
+ 
+    <br>
+
+    {% if data.cantvehiculos > 0%}
+
+        <ul>
+            {% for vehiculo in data.vehiculos%}
+            <li>{{vehiculo}}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            <select>
+            {% for vehiculo in data.vehiculos%}
+            <option value="{{vehiculo}}">{{vehiculo}}</il>
+            {% endfor %}
+            </select>
+        </ul>
+        <ul>
+        <table class="table table-hover table-birdered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    {% for vehiculo in data.vehiculos%}
+                    <th>{{vehiculo}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+            
+            {% for referencia in data.referencias%}
+                <tr>
+                <th scope="row">{{referencia}}</th>
+                <th>{{referencia}}</th>
+                </tr>
+                
+                {% endfor %}
+
+                <tr>
+                <th scope="row">2</th>
+                {% for color in data.colores%}
+                <th>{{color}}</th>
+                {% endfor %}
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    {%else %}
+        <h2>No existe vehiculos para mostrar</h2>
+    {%endif%}
+</body>
+</html>

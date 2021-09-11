@@ -20,8 +20,25 @@ app=Flask(__name__)
 #Crear la ruta de inicio o home page
 @app.route('/') # decorador para la ruta inicio
 def index():
-        #return '<h1>Hola mundo desde Flask 3</h1>'
-        return render_template('index.html')
+        #return '<h1>HInicio desde la ruta</h1>'
+        vehiculos = ['Mazda', 'Chevrolet',' Renault', 'Audi', 'ferrari']
+        datosindex = {
+        'titulo': 'Sistema de Prueba',
+        'subtitulo': 'Bienvenido al sistema ususario',
+        'vehiculos': vehiculos,
+        'usuario': 'usuarioPrueba',
+        'referencias': ['2','Aveo', 'Logan', '5 power','Airton'],
+        'colores': ['azul', 'yellowo', 'redy', 'bluck', 'nigga'],
+        'cantvehiculos': len(vehiculos)
+        }
+        return render_template('index.html', data = datosindex)
+
+@app.route('/login')
+def login():
+        return render_template('login.html')
+
+
+
 # Chequear si estamos en el archivo inicial main
 if __name__ == "__main__":
         app.run(debug=True,port=5200) ## para activar modo de depuración para tomar actualizaciones del codigo
