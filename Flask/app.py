@@ -16,8 +16,8 @@
 from flask import Flask,render_template, redirect, url_for, jsonify
 from flask.helpers import url_for
 from werkzeug.utils import redirect
-
 from flask_mysqldb import MySQL
+
 app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
@@ -28,16 +28,17 @@ app.config['MYSQL_DB'] = 'dbdflask'
 conexion = MySQL(app) # vinculo entre la aplicación y la bd
 
 #endpoints o rutas
-@app.route('/companies')
+@app.route('/cars')
 def list_cars():
         data = {}
         try:
                 cursor = conexion.connection.cursor()
-                sql = "SELECT id, marca, moderlo,valor, FROM car ORDER BY marca"
+                sql = "SELECT id, marca, modelo,valor FROM auto ORDER BY marca"
                 cursor.execute(sql)
                 cars = cursor.fetchall()
                 # print(companies)
                 # data['mensaje'] = 'Exito'
+                data['mensaje'] = 'Exito'
                 data['cars'] = cars
         except Exception as ex:    
                 data['mensaje'] = 'Error ...'
