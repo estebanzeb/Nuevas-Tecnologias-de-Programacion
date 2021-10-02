@@ -24,7 +24,19 @@ def inicio():
 
 @app.route('/plan') # decorador para la ruta inicio
 def plan():
-        return render_template('plan.html',)
+        data = {}
+        try:
+                cursor = conexion.connection.cursor()
+                sql = "SELECT * FROM destino "
+                cursor.execute(sql)
+                lista = cursor.fetchall()
+                # print(companies)
+                # data['mensaje'] = 'Exito'
+                data['mensaje'] = 'Exito'
+                data['lista'] = lista
+        except Exception as ex:    
+                data['mensaje'] = 'Error ...'
+        return render_template('plan.html', destinos = data )
 
 @app.route('/lista') # decorador para la ruta inicio
 def lista():

@@ -1,5 +1,30 @@
 {% extends "layout.html" %}
 {% block titulo %}Armar tu plan{% endblock %}
 {% block contenido %}
-    <h1>Ingreso al Sistema</h1>
+<div class="card border-light mb-3" style="max-width: 18rem;">
+    <div class="card-header">Informacion</div>
+    <div class="card-body">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+          </div>
+          
+          
+
+          <div class="input-group mb-3">
+            <select>
+                <option selected>--Selection--</option>
+                {% for data in destinos.lista%}
+                <option value="{{data[0]}}">{{data[1]}}</il>
+                {% endfor %}
+                </select>
+          </div>
+          
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Numero de personas" aria-label="Costo" aria-describedby="basic-addon2">
+          </div>
+        
+         
+          </div>
+    </div>
+
 {% endblock%}
