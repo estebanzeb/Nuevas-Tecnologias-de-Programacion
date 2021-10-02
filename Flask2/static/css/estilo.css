@@ -1,0 +1,19 @@
+body{
+   color: tomato;
+}
+
+h1{
+    color: blueviolet;
+}
+
+tr{
+    border-color: yellow;
+}
+
+thead{
+    color: turquoise;
+}
+
+tbody{
+    color:darkmagenta;
+}
