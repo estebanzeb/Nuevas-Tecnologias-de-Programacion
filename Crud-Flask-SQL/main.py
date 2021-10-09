@@ -30,6 +30,11 @@ def update_user():
     Controler_users.update_user( name, email, phone, password, id)
     return redirect("/")
 
+@app.route("/delete_user", methods=["POST"])
+def delete_user():
+    Controler_users.delete_user(request.form["id"])
+    return redirect("/")
+
 if __name__ == "__main__":
     #app.run(host='0.0.0.0', port=8000, debug=True)
     app.run(port=5300, debug=True)
