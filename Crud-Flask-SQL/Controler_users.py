@@ -2,7 +2,7 @@
 from pymysql import connections
 from configdb import get_connection 
 
-def add_users(name, email, phone, password): 
+def add_user(name, email, phone, password): 
     connections = get_connection()
     with connections.cursor() as cursor:
         cursor.execute("INSERT INTO users (name, email, phone, password) VALUES (%s, %s, %s, %s)", (name, email, phone, password))
@@ -10,21 +10,21 @@ def add_users(name, email, phone, password):
     connections.commit()#Agregar
     connections.close()#Cerra la conexion
 
-def update_users( name, email, phone, password, id):
+def update_user( name, email, phone, password, id):
     connections = get_connection
     with connections.cursor() as cursor:
         cursor.execute("UPDATE users name = %s, email = %s, phone = %s, password = %s WHERE id = %s ",( name, email, phone, password, id))     
     connections.commit()#Agregar
     connections.close()#Cerra la conexion
     
-def delete_users(id):
+def delete_user(id):
     connections = get_connection()
     with connections.cursor() as cursor:
         cursor.execute("DELETE FROM users WHERE id = %s", (id))
     connections.commit()
     connections.close()
 
-def get_users():
+def get_user():
     connections = get_connection()
     users = []
     with connections.cursor() as cursor:
@@ -33,7 +33,7 @@ def get_users():
     connections.close()
     return users
 
-def get_users_id(id):
+def get_user_id(id):
     connections = get_connection()
     users = None
     with connections.cursor() as cursor:
