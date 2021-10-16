@@ -1,8 +1,6 @@
-#Libreria para conexion a MySQl
+# librería para conexión a Mysql
 import pymysql
 
-#Metodo para realizar la conexion a mysql
-
+# método para realizar la conexión a mysql
 def get_connection():
-    return pymysql.connect(host='localhost', user='root', passwd='',
-    db='dbbibliotk')
+    return pymysql.connect(host='localhost',user='root',password='',db='dbbiblioteca')
