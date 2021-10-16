@@ -35,7 +35,7 @@ def get_user_id(id):
     cnn = get_connection()
     user = None
     with cnn.cursor() as cursor:
-        cursor.execute("SELECT id, name, email, phone FROM user WHERE id = %s",(id))
+        cursor.execute("SELECT id, name, email, phone FROM users WHERE id = %s",(id))
         user = cursor.fetchone()
     cnn.close
     return user

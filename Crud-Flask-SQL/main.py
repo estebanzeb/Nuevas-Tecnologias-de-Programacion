@@ -29,7 +29,7 @@ def update_user():
     phone = request.form['phone']
     password = request.form['password']
     user_controller.update_user(name,email,phone,password,id)
-    return redirect('/')
+    return redirect('/index')
 
 @app.route("/delete_user", methods=["POST"])
 def delete_user():
