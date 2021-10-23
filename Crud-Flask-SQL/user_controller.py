@@ -17,6 +17,10 @@ def update_user(name,email,phone,password,id):
 
 def delete_user(id):
     cnn = get_connection()
+
+    
+
+
     with cnn.cursor() as cursor:
         cursor.execute("DELETE FROM users WHERE id = %s",(id))
     cnn.commit()
