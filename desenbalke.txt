@@ -14,3 +14,12 @@ CREATE TABLE invoice(
     price varchar(25) NOT NULL,
     balance varchar(25) NOT NULL
 );
+
+SELECT id, date, id_user, price, balance from customer as us 
+INNER JOIN invoice as I on I.id_user= us.id
+ORDER BY us.id ASC
+
+1 Validar que el cliente no tenga facturas 
+2 El ide del cliente no se puede modificar en el mismo editar
+3 Validar el balance que este en cero antes de eliminar
+4 Validar que el cliente exista antes de agregar una factura

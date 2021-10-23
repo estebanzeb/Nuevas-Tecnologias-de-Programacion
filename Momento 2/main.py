@@ -14,6 +14,10 @@ def index():
 def form_add_user():
     return render_template('add_user.html')
 
+@app.route('/form_add_invoice')
+def form_add_invoice():
+    return render_template('add_invoice.html')
+
 @app.route('/edit_user/<int:id>')
 def edit_user(id):
     user = user_controller.get_user_id(id)
@@ -40,6 +44,17 @@ def save_user():
     status = request.form["status"]
     movile = request.form['movile']
     user_controller.add_user(name,status,movile)
+    # De cualquier modo, y si todo fue bien, redireccionar
+    return redirect("/index")
+
+@app.route("/save_invoice", methods=["POST"])
+def save_invoice():
+    number = request.form["number"]
+    date = request.form["date"]
+    id_users = request.form['id_users']
+    price = request.form['price']
+    balance = request.form['id_users']
+    user_controller.add_invoice(number,date,id_users, price, balance)
     # De cualquier modo, y si todo fue bien, redireccionar
     return redirect("/index")
 

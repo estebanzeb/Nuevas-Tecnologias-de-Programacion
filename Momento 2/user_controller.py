@@ -1,6 +1,13 @@
 # importar el archivo de la conexión a la BD
 from configdb import get_connection
 
+def add_invoice(number,date,id_users, price, balance):
+    cnn = get_connection()
+    with cnn.cursor() as cursor:
+        cursor.execute("INSERT INTO customer (name, status, mobile) VALUES (%s,%s,%s)",(name,status,mobile))
+    cnn.commit()
+    cnn.close()
+
 def add_user(name, status, mobile):
     cnn = get_connection()
     with cnn.cursor() as cursor:

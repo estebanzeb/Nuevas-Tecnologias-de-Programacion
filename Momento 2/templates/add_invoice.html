@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block titulo %}Agregar Cliente{% endblock %}
+{% block contenido %}
+    <div class="container">
+        <section class="section">
+            <div class="columns">
+                <div class="column is-one-third">
+                    <h3 class="is-size-3">Agregar Usuario</h3>
+                    <form action="{{url_for('save_invoice')}}" method="POST">
+                        <label for="number">Número:</label>
+                        <input required type="text" class="form-control" placeholder="Nombre" name="number" id="number">
+                        <label for="date">Fecha:</label>
+                        <input required type="text" class="form-control" placeholder="Correo Electrónico" name="date" id="date">
+                        <label for="id_customer">id_customer</label>
+                        <input required type="text" class="form-control" placeholder="Teléfono" name="id_customer" id="id_customer">
+                        <label for="price">Precio</label>
+                        <input required type="text" class="form-control" placeholder="Teléfono" name="price" id="price">
+                        <label for="balance">Balance</label>
+                        <input required type="text" class="form-control" placeholder="Teléfono" name="balance" id="balance">
+                        <br>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <a href="{{url_for('index')}}" class="btn btn-primary">Volver</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
