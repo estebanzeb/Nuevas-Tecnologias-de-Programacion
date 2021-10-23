@@ -1,4 +1,4 @@
-CREATE TABLE users(
+CREATE TABLE customer(
 	id int unsigned auto_increment primary key,
 	name varchar(25) NOT NULL,
     status varchar(25) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE invoice(
 	number varchar(25) NOT NULL,
     date date NOT NULL,
     id_user int unsigned,
-    foreign key(id_user) references users(id),
+    foreign key(id_user) references customer(id),
     price varchar(25) NOT NULL,
     balance varchar(25) NOT NULL
 );
