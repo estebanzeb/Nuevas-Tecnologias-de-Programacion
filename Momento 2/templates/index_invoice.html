@@ -1,35 +1,39 @@
 {% extends "base.html" %}
-{% block titulo %} Usuarios {% endblock %}
+{% block titulo %} Facturas {% endblock %}
 {% block contenido %}
 <div class="container">
     <section class="section">
         <div class="columns">
             <div class="column">
-                <h3 class="is-size-3">Usuarios</h3>
+                <h3 class="is-size-3">Facturas</h3>
                 <a href="{{url_for('form_add_invoice')}}" class="btn btn-primary">Agregar Customer</a>
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Estado</th>
-                            <th>Movil</th>
+                            <th>Numero</th>
+                            <th>Fecha</th>
+                            <th>id_user</th>
+                            <th>Precio</th>
+                            <th>Balance</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for invoice in invoices %}
                         <tr>
+                            <td>{{invoice[0]}}</td>
                             <td>{{invoice[1]}}</td>
                             <td>{{invoice[2]}}</td>
-                            
+                            <td>{{invoice[3]}}</td>
                             <td>{{invoice[4]}}</td>
-                            <td>{{invoice[5]}}</td>
                             <td>
                                 {# Pasar el id (lo que hay en user[0] #}
-                                <a href="{{url_for('edit_invoice', id=invoice[0])}}"
+                                <a href="{{url_for('edit_invoice', id=invoice[2])}}"
                                     class="btn btn-success">Editar</a>
                             </td>
                             <td>
-                                <form action="{{url_for('delete_invoice')}}" method="POST" onSubmit="return confirm('Está seguro de eliminar este usuario?');">
+                                <form action="{{url_for('delete_invoice')}}" method="POST">
+                                    <!-- <input required type="text" class="form-control" placeholder="Teléfono" name="movile" id="movile"
+                                    value="{{invoice[0]}}"> -->
                                     <input type="hidden" name="id" value="{{invoice[0]}}">
                                     <button class="btn btn-danger">Eliminar</button>
                                 </form>

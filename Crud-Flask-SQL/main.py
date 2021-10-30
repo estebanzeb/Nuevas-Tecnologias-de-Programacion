@@ -5,6 +5,7 @@ import user_controller
 app = Flask(__name__)
 
 @app.route('/')
+
 @app.route('/index')
 def index():
     users = user_controller.get_users()

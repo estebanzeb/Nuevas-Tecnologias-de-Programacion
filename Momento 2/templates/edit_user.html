@@ -11,15 +11,16 @@
                         <label for="name">Nombre:</label>
                         <input required type="text" class="form-control" placeholder="Nombre" name="name" id="name"
                         value="{{user[1]}}">
+
                         <label for="status">Correo Electrónico:</label>
-                        <input required type="text" class="form-control" placeholder="Correo Electrónico" name="status" id="status"
-                        value="{{user[2]}}">
+                        <input required type="text" class="form-control" placeholder="Correo Electrónico" name="status" id="status" value="{{user[2]}}">
+
                         <label for="movile">Telefono</label>
                         <input required type="text" class="form-control" placeholder="Teléfono" name="movile" id="movile"
                         value="{{user[3]}}">
                         <br>
                         <button type="submit" class="btn btn-success">Guardar</button>
-                        <a href="{{url_for('.index')}}" class="btn btn-primary">Volver</a>
+                        <a href="{{url_for('index_customer')}}" class="btn btn-primary">Volver</a>
                     </form>
                 </div>
             </div>

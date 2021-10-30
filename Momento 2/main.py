@@ -53,7 +53,7 @@ def save_user():
 @app.route('/index_invoice')
 def index_invoice():
     invoices = user_controller.get_invoice()
-    return render_template('index_invoice.html',invoices=invoices)
+    return render_template('index_invoice.html',invoices = invoices)
 
 @app.route('/form_add_invoice')
 def form_add_invoice():
@@ -61,19 +61,18 @@ def form_add_invoice():
 
 @app.route('/edit_invoice/<int:id>')
 def edit_invoice(id):
+    print(id)
     invoice = user_controller.get_invoice_id(id)
-    return render_template('edit_invoice.html',invoice=invoice)
+    return render_template('edit_invoice.html', invoice = invoice)
 
-@app.route('/update_invoice', methods=['POST'])
 def update_invoice():
     # obtener los datos del formulario que invocó este end-point
-    id = request.form['id']
     number = request.form['number']
     date = request.form['date']
-    id_users = request.form['id_users']
+    id_user = request.form['id_user']
     price = request.form['price']
     balance = request.form['balance']
-    user_controller.update_invoice(number,date,id_users, price, balance,id)
+    user_controller.update_invoice(date,id_user, price, balance,number)
     return redirect('/index_invoice')
 
 @app.route("/delete_invoice", methods=["POST"])
@@ -85,10 +84,10 @@ def delete_invoice():
 def save_invoice():
     number = request.form["number"]
     date = request.form["date"]
-    id_users = request.form['id_users']
+    id_user = request.form['id_user']
     price = request.form['price']
-    balance = request.form['id_users']
-    user_controller.add_invoice(number,date,id_users, price, balance)
+    balance = request.form['balance']
+    user_controller.add_invoice(number, date, id_user, price, balance)
     # De cualquier modo, y si todo fue bien, redireccionar
     return redirect("/index_invoice")
 

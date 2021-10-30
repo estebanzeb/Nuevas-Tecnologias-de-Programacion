@@ -1,4 +1,4 @@
-
+{% extends "base.html" %}
 {% block titulo %}Agregar Cliente{% endblock %}
 {% block contenido %}
     <div class="container">
@@ -10,15 +10,16 @@
                         <label for="name">Nombre:</label>
                         <input required type="text" class="form-control" placeholder="Nombre" name="name" id="name">
                         <label for="status">Estado:</label>
-                        <input required type="text" class="form-control" placeholder="Correo Electrónico" name="status" id="status">
+                        <input required type="text" class="form-control" placeholder="Estado" name="status" id="status">
                         <label for="movile">Movil</label>
-                        <input required type="text" class="form-control" placeholder="Teléfono" name="movile" id="movile">
+                        <input required type="text" class="form-control" placeholder="Movil" name="movile" id="movile">
                         <br>
                         <button type="submit" class="btn btn-success">Guardar</button>
-                        <a href="{{url_for('index')}}" class="btn btn-primary">Volver</a>
+                        <a href="{{url_for('index_customer')}}" class="btn btn-primary">Volver</a>
                     </form>
                 </div>
             </div>
         </section>
     </div>
-{% endblock %}
+    {% endblock %}
+
