@@ -6,7 +6,7 @@
         <div class="columns">
             <div class="column">
                 <h3 class="is-size-3">Usuarios</h3>
-                <a href="{{url_for('form_add_user')}}" class="btn btn-primary">Agregar Customer</a>
+                <a href="{{url_for('form_add_invoice')}}" class="btn btn-primary">Agregar Customer</a>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -16,19 +16,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for user in users %}
+                        {% for invoice in invoices %}
                         <tr>
-                            <td>{{user[1]}}</td>
-                            <td>{{user[2]}}</td>
-                            <td>{{user[3]}}</td>
+                            <td>{{invoice[1]}}</td>
+                            <td>{{invoice[2]}}</td>
+                            <td>{{invoice[3]}}</td>
+                            <td>{{invoice[4]}}</td>
+                            <td>{{invoice[5]}}</td>
                             <td>
                                 {# Pasar el id (lo que hay en user[0] #}
-                                <a href="{{url_for('edit_user', id=user[0])}}"
+                                <a href="{{url_for('edit_invoice', id=invoice[0])}}"
                                     class="btn btn-success">Editar</a>
                             </td>
                             <td>
-                                <form action="{{url_for('delete_user')}}" method="POST" onSubmit="return confirm('Está seguro de eliminar este usuario?');">
-                                    <input type="hidden" name="id" value="{{user[0]}}">
+                                <form action="{{url_for('delete_invoice')}}" method="POST" onSubmit="return confirm('Está seguro de eliminar este usuario?');">
+                                    <input type="hidden" name="id" value="{{invoice[0]}}">
                                     <button class="btn btn-danger">Eliminar</button>
                                 </form>
                             </td>
