@@ -1,15 +1,14 @@
-from flask import Flask, render_template,url_for,request,redirect
+from flask import Flask, render_template, url_for, request, redirect
 from flask.wrappers import Request
 import user_controller
 
 app = Flask(__name__)
 
-#@app.route('/')
+@app.route('/')
 
-@app.route('/index')
-def index():
-    return render_template('index.html')
-
+# @app.route('/index')
+# def index():
+#     return render_template('index.html')
 
 @app.route('/index_customer')
 def index_customer():
