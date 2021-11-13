@@ -59,11 +59,14 @@ def get_user_id2(id):
 
 def add_invoice(number,date,id_user, price, balance):
     cnn = get_connection()
-    with cnn.cursor() as cursor:
-        cursor.execute("INSERT INTO invoice (number, date, id_user, price, balance) VALUES (%s,%s,%s,%s,%s)",(number, date, id_user, price, balance))
-    cnn.commit()
-    cnn.close()
-
+    invoicecount = get_invoice_id2(id_user)
+    #print(invoicecount)
+    if(invoicecount != None):
+        with cnn.cursor() as cursor:
+            cursor.execute("INSERT INTO invoice (number, date, id_user, price, balance) VALUES (%s,%s,%s,%s,%s)",(number, date, id_user, price, balance))
+        cnn.commit()
+        cnn.close()   
+        
 def update_invoice(number, date, price,balance,id):
     cnn = get_connection()
     with cnn.cursor() as cursor:
@@ -100,3 +103,13 @@ def get_invoice_id(id):
         invoice = cursor.fetchone()
     cnn.close
     return invoice
+
+def get_invoice_id2(id_user):
+    cnn = get_connection()
+    invoice2 = None
+    with cnn.cursor() as cursor:
+        cursor.execute("SELECT US.id_user,(select count(*) from dbbiblioteca.customer where id=US.id_user) customer FROM dbbiblioteca.invoice AS US WHERE US.id_user=%s",(id_user))
+        invoice2 = cursor.fetchone()
+        
+    cnn.close
+    return invoice2
