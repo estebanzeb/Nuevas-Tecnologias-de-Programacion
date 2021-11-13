@@ -1,7 +1,7 @@
 CREATE TABLE customer(
 	id int unsigned auto_increment primary key,
 	name varchar(25) NOT NULL,
-    status varchar(25) NOT NULL,
+    status enum('Activo','Inactivo') NOT NULL,
     mobile varchar(25) NOT NULL
 );
 

@@ -1,19 +1,37 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask.wrappers import Request
 import user_controller
 
 app = Flask(__name__)
-
+app.secret_key = 'sdvfsd'
 @app.route('/')
+
+@app.route('/index')
+def index():
+    return render_template('login.html')
 
 # @app.route('/index')
 # def index():
 #     return render_template('index.html')
+@app.route('/login',methods=['POST'])
+def login():
+    if request.method == "POST":
+        # capturar datos enviados por el templates login.html
+        email = request.form['email']
+        password = request.form['password']
+        # creación de variables de sesión
+        session['email'] = email
+        session['password'] = password
+        return redirect("/index_customer")
+
 
 @app.route('/index_customer')
 def index_customer():
-    users = user_controller.get_users()
-    return render_template('index_customer.html',users=users)
+    if session['email'] == 'xx@gmail.com' and session['password'] == '11':
+        users = user_controller.get_users()
+        return render_template('index_customer.html',users=users)       
+    else: 
+        return redirect(url_for('index'))
 
 @app.route('/form_add_user')
 def form_add_user():
@@ -67,11 +85,12 @@ def edit_invoice(id):
 @app.route('/update_invoice', methods=['POST'])
 def update_invoice():
     # obtener los datos del formulario que invocó este end-point
+    id = request.form['id']
     number = request.form['number']
     date = request.form['date']
     price = request.form['price']
     balance = request.form['balance']
-    user_controller.update_invoice(date, price, balance,number)
+    user_controller.update_invoice(number, date, price,balance,id)
     return redirect('/index_invoice')
 
 @app.route("/delete_invoice", methods=["POST"])
@@ -91,4 +110,4 @@ def save_invoice():
     return redirect("/index_invoice")
 
 if __name__ == "__main__":
-    app.run(port = 8080, debug=True)
+    app.run(port = 4444, debug=True)

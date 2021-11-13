@@ -1,12 +1,12 @@
 CREATE TABLE customer(
 	id int unsigned auto_increment primary key,
 	name varchar(25) NOT NULL,
-    status varchar(25) NOT NULL,
+    status enum('Activo','Inactivo') NOT NULL,
     mobile varchar(25) NOT NULL
 );
 
 CREATE TABLE invoice(
-	id_invoice int unsigned auto_increment primary key,
+	id int unsigned auto_increment primary key,
 	number varchar(25) NOT NULL,
     date date NOT NULL,
     id_user int unsigned,
@@ -15,11 +15,11 @@ CREATE TABLE invoice(
     balance varchar(25) NOT NULL
 );
 
-SELECT id, date, id_user, price, balance from customer as us 
+SELECT id, number, date, id_user, price, balance from customer as us 
 INNER JOIN invoice as I on I.id_user= us.id
 ORDER BY us.id ASC
 
-1 Validar que el cliente no tenga facturas 
+1 Validar que el cliente no tenga facturas al eliminar
 2 El ide del cliente no se puede modificar en el mismo editar
 3 Validar el balance que este en cero antes de eliminar
 4 Validar que el cliente exista antes de agregar una factura

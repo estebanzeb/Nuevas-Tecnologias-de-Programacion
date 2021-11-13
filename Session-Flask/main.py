@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 app = Flask(__name__)
 app.secret_key = 'sdvfsd'
 
-@app.route('/')
+@app.route('/index')
 def index():
     return render_template('login.html')
 
@@ -26,7 +26,7 @@ def cart():
         return render_template('cart.html')        
     else: 
         print("Mil pesos y lo dejo entrar")
-        return redirect(url_for('/'))
+        return redirect(url_for('index'))
 
 @app.route('/logout')
 def logout():

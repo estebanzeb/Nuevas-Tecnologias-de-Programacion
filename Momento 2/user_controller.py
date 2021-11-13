@@ -24,9 +24,7 @@ def delete_user(id):
             cursor.execute("DELETE FROM customer WHERE id = %s",(id))
         cnn.commit()
         cnn.close()
-        return {"message": 'Se elimina correctamente', "code":True}
-    else:
-        return {"message": 'Este usuario tiene Facturas Registradas', "code":False}  
+    
 
 def get_users():
     cnn = get_connection()
@@ -53,7 +51,7 @@ def get_user_id2(id):
     cnn = get_connection()
     customer2 = None
     with cnn.cursor() as cursor:
-        cursor.execute("SELECT US.id,(select count(*) from dbbiblioteca2.invoice where id_user=US.id) invoices FROM dbbiblioteca2.customer AS US WHERE US.id=%s",(id))
+        cursor.execute("SELECT US.id,(select count(*) from dbbiblioteca.invoice where id_user=US.id) invoices FROM dbbiblioteca.customer AS US WHERE US.id=%s",(id))
         customer2 = cursor.fetchone()
     cnn.close
     return customer2
@@ -66,10 +64,10 @@ def add_invoice(number,date,id_user, price, balance):
     cnn.commit()
     cnn.close()
 
-def update_invoice(number,date,id_user, price, balance,id):
+def update_invoice(number, date, price,balance,id):
     cnn = get_connection()
     with cnn.cursor() as cursor:
-        cursor.execute("UPDATE invoice SET number = %s, date = %s, id_user = %s , price = %s , balance = %s WHERE id_user = %s",(number,date,id_user, price, balance))
+        cursor.execute("UPDATE invoice SET number = %s, date = %s, price = %s , balance = %s WHERE id = %s",(number, date, price,balance,id))
     cnn.commit()
     cnn.close()
 
