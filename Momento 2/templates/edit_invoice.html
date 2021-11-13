@@ -8,20 +8,21 @@
                     <h3 class="is-size-3">Agregar Usuario</h3>
                     <form action="{{url_for('update_invoice')}}" method="post">
 
+                        <input type="hidden" name="id" value="{{invoice[0]}}">
+
                         <label for="number">Número:</label>
-                        <input required type="text" class="form-control" placeholder="Numero" name="number" id="number" value="{{invoice[0]}}">
+                        <input required type="text" class="form-control" placeholder="Numero" name="number" id="number" value="{{invoice[1]}}">
 
                         <label for="date">Fecha:</label>
-                        <input required type="date" class="form-control" placeholder="Fecha" name="date" id="date" value="{{invoice[1]}}">
+                        <input required type="date" class="form-control" placeholder="aaaa-mm-dd" name="date" id="date" value="{{invoice[2]}}">
 
-                        <label for="id_customer">id_customer</label>
-                        <input required type="number" class="form-control" placeholder="id_customer" name="id_customer" id="id_customer" value="{{invoice[2]}}">
+                        <!--<input  type="hidden" name="id_user" id="id_user" value="{{invoice[3]}}">-->
 
                         <label for="price">Precio</label>
-                        <input required type="text" class="form-control" placeholder="Precio" name="price" id="price" value="{{invoice[3}}">
+                        <input required type="text" class="form-control" placeholder="Precio" name="price" id="price" value="{{invoice[4]}}">
                         
                         <label for="balance">Balance</label>
-                        <input required type="text" class="form-control" placeholder="Balance" name="balance" id="balance" value="{{invoice[4]}}">
+                        <input required type="text" class="form-control" placeholder="Balance" name="balance" id="balance" value="{{invoice[5]}}">
                         <br>
                         <button type="submit" class="btn btn-success">Guardar</button>
                         <a href="{{url_for('index_invoice')}}" class="btn btn-primary">Volver</a>

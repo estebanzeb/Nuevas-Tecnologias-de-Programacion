@@ -6,7 +6,7 @@ CREATE TABLE customer(
 );
 
 CREATE TABLE invoice(
-	id_invoice int unsigned auto_increment primary key,
+	id int unsigned auto_increment primary key,
 	number varchar(25) NOT NULL,
     date date NOT NULL,
     id_user int unsigned,
@@ -15,7 +15,7 @@ CREATE TABLE invoice(
     balance varchar(25) NOT NULL
 );
 
-SELECT id, date, id_user, price, balance from customer as us 
+SELECT id, number, date, id_user, price, balance from customer as us 
 INNER JOIN invoice as I on I.id_user= us.id
 ORDER BY us.id ASC
 

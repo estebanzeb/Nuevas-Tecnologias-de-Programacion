@@ -17,18 +17,16 @@ def update_user(name,status,mobile,id):
 
 def delete_user(id):
     cnn = get_connection()
-    with cnn.cursor() as cursor:
-        
-        cursor.execute("SELECT number, date, id_user, price, balance from customer as us INNER JOIN invoice as I on I.id_user = us.id ORDER BY us.id ASC")
+    usercount = get_user_id2(id)
 
-        print(cursor.rowcount)
-
-        if (cursor.rowcount >= 0) :
+    if(usercount[1] == 0):
+        with cnn.cursor() as cursor:
             cursor.execute("DELETE FROM customer WHERE id = %s",(id))
-            cnn.commit()
-        else:
-            print("El cliente todavia tiene facturas")  
-    cnn.close()   
+        cnn.commit()
+        cnn.close()
+        return {"message": 'Se elimina correctamente', "code":True}
+    else:
+        return {"message": 'Este usuario tiene Facturas Registradas', "code":False}  
 
 def get_users():
     cnn = get_connection()
@@ -51,6 +49,14 @@ def get_user_id(id):
     cnn.close
     return customer
 
+def get_user_id2(id):
+    cnn = get_connection()
+    customer2 = None
+    with cnn.cursor() as cursor:
+        cursor.execute("SELECT US.id,(select count(*) from dbbiblioteca2.invoice where id_user=US.id) invoices FROM dbbiblioteca2.customer AS US WHERE US.id=%s",(id))
+        customer2 = cursor.fetchone()
+    cnn.close
+    return customer2
 #----------------------------------------------------------------------------------------
 
 def add_invoice(number,date,id_user, price, balance):
@@ -69,39 +75,30 @@ def update_invoice(number,date,id_user, price, balance,id):
 
 def delete_invoice(id):
     cnn = get_connection()
-    with cnn.cursor() as cursor:
-
-        # cursor.execute("SELECT balance FROM invoice WHERE id = %s",(id))
-        # n = cursor.fetchall()
-        # print(n)
-        # if (n == 0) :
-            cursor.execute("DELETE FROM invoice WHERE number = %s",(id))
-            cnn.commit()
-            cnn.close() 
-
-        # else :
-        #     print ("El total del balance no es cero")
-        #     #cnn.commit()
-        #     cnn.close()
+    balance = get_invoice_id(id)[5]
+    print (balance)
+    var_dump = balance
+    if (balance == "0"):
+        with cnn.cursor() as cursor:
+            cursor.execute("DELETE FROM invoice WHERE id = %s",(id))
+        cnn.commit()
+        cnn.close()
 
 def get_invoice():
     cnn = get_connection()
     invoice = []
     with cnn.cursor() as cursor:
-        cursor.execute("SELECT number, date, id_user, price, balance FROM invoice")
+        cursor.execute("SELECT I.id, I.number, I.date, US.id, price, balance   FROM customer AS US INNER JOIN invoice AS I ON I.id_user= US.id ORDER BY US.id ASC")
         invoice = cursor.fetchall()
     cnn.close()
-
     print(invoice)
-
     return invoice
 
 def get_invoice_id(id):
     cnn = get_connection()
     invoice = None
-    print(id)
     with cnn.cursor() as cursor:
-        cursor.execute("SELECT  number, date, id_user, price, balance FROM invoice WHERE id_user = %s",(id))
+        cursor.execute("SELECT I.id, I.number, I.date, US.id, price, balance  FROM customer AS US INNER JOIN invoice AS I ON I.id_user= US.id WHERE I.id = %s",(id))
         invoice = cursor.fetchone()
     cnn.close
     return invoice
