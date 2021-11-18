@@ -1,6 +1,26 @@
 # importar el archivo de la conexión a la BD
 from configdb import get_connection
 
+def get_count_users():
+    cnn = get_connection()
+    count = []
+    with cnn.cursor() as cursor:
+        cursor.execute("SELECT count(*) FROM dbbiblioteca.user ")
+        count = cursor.fetchone()
+    cnn.close()
+    return count
+
+def get_login():
+    cnn = get_connection()
+    user = []
+    with cnn.cursor() as cursor:
+        cursor.execute("SELECT  id,name, email, password FROM user")
+        user = cursor.fetchall()
+    cnn.close()
+    return user
+
+#----------------------------------------------------------------------------------------
+
 def add_user(name, status, mobile):
     cnn = get_connection()
     with cnn.cursor() as cursor:
@@ -25,7 +45,6 @@ def delete_user(id):
         cnn.commit()
         cnn.close()
     
-
 def get_users():
     cnn = get_connection()
     customer = []
@@ -33,9 +52,6 @@ def get_users():
         cursor.execute("SELECT id, name, status, mobile FROM customer")
         customer = cursor.fetchall()
     cnn.close()
-
-    print(cursor.rowcount)
-
     return customer
 
 def get_user_id(id):

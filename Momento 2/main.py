@@ -25,14 +25,32 @@ def login():
         return redirect("/index_customer")
 
 
+
+@app.route('/logout')
+def logout():
+    #Cerrar la session
+    session.clear()
+    return render_template('login.html')
+
 @app.route('/index_customer')
 def index_customer():
-    if session['email'] == 'xx@gmail.com' and session['password'] == '11':
-        users = user_controller.get_users()
-        return render_template('index_customer.html',users=users)       
-    else: 
+    
+    c = user_controller.get_count_users()
+    #print(c[0])
+    if c[0] >= 1:
+        
+        users = user_controller.get_login()
+        #print (users)
+        for user in users:
+            print (user)
+            if session['email'] == user[2] and session['password'] == user[3]:
+                users = user_controller.get_users()
+                return render_template('index_customer.html',users=users)       
+    else:
+        flash("No existen usuarios registrados")
         return redirect(url_for('index'))
-
+        
+        
 @app.route('/form_add_user')
 def form_add_user():
     return render_template('add_user.html')

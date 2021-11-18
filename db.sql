@@ -58,27 +58,24 @@ INSERT INTO `invoice` (`id`,  `number`, `date`, `id_user`, `price`, `balance`) V
 (5, 232323, '2021-10-14', 2, 80000, 80000);
 
 -- --------------------------------------------------------
-
-CREATE TABLE user(
-	id int unsigned auto_increment primary key,
-	name varchar(25) NOT NULL,
-  status enum('Activo','Inactivo') NOT NULL,
-  mobile varchar(25) NOT NULL
-);
---
--- Estructura de tabla para la tabla `user`
---
-
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(3) NOT NULL 
-)
+);
+
 
 INSERT INTO `user` (`id`,  `name`, `email`, `password`) VALUES
 (1, 'Esteban', 'estebanzeb@gmail.com', '123'),
-(2, 'Esteban2', 'estebanzeb@gmail.com', '123');
+(2, 'Esteban2', 'estebanzeb2@gmail.com', '123');
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
+--
+
+
 --
 -- Volcado de datos para la tabla `user`
 --

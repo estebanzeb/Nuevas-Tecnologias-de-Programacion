@@ -18,5 +18,17 @@
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
         </form>
 
+        <h3>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <!--<ul class=flashes>-->
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+                <!--</ul>-->
+            {% endif %}
+            {% endwith %}
+        </h3>
+        
     </div>
 {% endblock%}
