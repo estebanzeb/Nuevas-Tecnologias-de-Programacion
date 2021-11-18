@@ -24,13 +24,24 @@ def login():
         session['password'] = password
         return redirect("/index_customer")
 
-
-
 @app.route('/logout')
 def logout():
     #Cerrar la session
     session.clear()
-    return render_template('login.html')
+    return redirect("/index")
+
+
+# @app.route("/save_user", methods=["POST"])
+# def save_user():
+#     name = request.form["name"]
+#     status = request.form["status"]
+#     movile = request.form['movile']
+#     user_controller.add_user(name,status,movile)
+#     # De cualquier modo, y si todo fue bien, redireccionar
+#     return redirect("/index_customer")
+
+
+
 
 @app.route('/index_customer')
 def index_customer():
@@ -39,13 +50,16 @@ def index_customer():
     #print(c[0])
     if c[0] >= 1:
         
-        users = user_controller.get_login()
+        logins = user_controller.get_login()
         #print (users)
-        for user in users:
-            print (user)
-            if session['email'] == user[2] and session['password'] == user[3]:
+        for login in logins:
+            #print (login)
+            if session['email'] == login[2] and session['password'] == login[3]:
                 users = user_controller.get_users()
-                return render_template('index_customer.html',users=users)       
+                
+                return render_template('index_customer.html',users=users,login=login)
+        flash("La contraseña o el correo son incorrectos, INTENTE DE NUEVO")
+        return redirect(url_for('index'))   
     else:
         flash("No existen usuarios registrados")
         return redirect(url_for('index'))

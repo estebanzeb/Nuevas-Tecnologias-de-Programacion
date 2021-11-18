@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% block titulo %} Usuarios {% endblock %}
+{% block titulo %} Cliente {% endblock %}
 {% block contenido %}
 <div class="container">
     <section class="section">
         <div class="columns">
             <div class="column">
-                <h3 class="is-size-3">Usuarios</h3>
+                <h3 class="is-size-3">Cliente</h3>
+                <p>Usuario:  <b>{{login[1]}}</b></p>
                 <a href="{{url_for('form_add_user')}}" class="btn btn-primary">Agregar Customer</a>
                 <a href="/logout" class="btn btn-success">Cerrar sesión</a>
                 <table class="table table-hover">
