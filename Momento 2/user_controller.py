@@ -19,7 +19,22 @@ def get_login():
     cnn.close()
     return user
 
+def get_email():
+    cnn = get_connection()
+    email = []
+    with cnn.cursor() as cursor:
+        cursor.execute("SELECT email FROM user")
+        email = cursor.fetchall()
+    cnn.close()
+    return email
 
+def add_login(name,email,password):
+    cnn = get_connection()
+    with cnn.cursor() as cursor:
+        cursor.execute("INSERT INTO user (name,email,password) VALUES (%s,%s,%s)",(name,email,password))
+    cnn.commit()
+    cnn.close()
+    
 #----------------------------------------------------------------------------------------
 
 def add_user(name, status, mobile):

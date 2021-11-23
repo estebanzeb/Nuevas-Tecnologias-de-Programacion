@@ -59,7 +59,7 @@ INSERT INTO `invoice` (`id`,  `number`, `date`, `id_user`, `price`, `balance`) V
 
 -- --------------------------------------------------------
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  id int unsigned auto_increment primary key,
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(3) NOT NULL 
