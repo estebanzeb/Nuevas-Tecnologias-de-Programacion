@@ -2,8 +2,12 @@ from flask import Flask, request, Response, jsonify
 from flask_pymongo import PyMongo
 from bson import json_util
 from bson.objectid import ObjectId
+from flask_cors import CORS
 #import json
 app = Flask(__name__)
+
+CORS(app)
+
 # conexión al server de MongoDB
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/dblibrary'
 mongo = PyMongo(app)
@@ -25,7 +29,7 @@ def add_book():
 def get_books():
     books = mongo.db.books.find()
     response = json_util.dumps(books) # BSON a JSON
-    return Response(response, mimetype="application/json")
+    return Response(response, mimetype="applicatcd ion/json")
 
 @app.route('/books/<id>', methods=["GET"])
 def get_book(id):
