@@ -65,8 +65,7 @@ def save_login():
         user_controller.add_login(name,email,password)
         flash("El usuario ya fue registrado")
         return redirect("/index")
-            
-   
+       
 #----------------------------------------------------------------------------------------------
 
 @app.route('/index_customer')
